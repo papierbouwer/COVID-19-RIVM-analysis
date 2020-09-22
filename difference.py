@@ -26,7 +26,7 @@ def main():
 
     plt.legend()
 
-    plt.title("Bestaande en nieuwe gevallen COVID-19 tussen " + secondDate + " en " + firstDate + "\nTotaal nieuwe gevallen " + str(np.sum(first - second)))
+    plt.title("Totaal en nieuwe gevallen COVID-19 tussen " + secondDate + " en " + firstDate + "\nTotaal nieuwe gevallen " + str(np.sum(first - second)))
     plt.savefig("plots/" + firstDate + secondDate + "diff.png")
 
     plt.show()
