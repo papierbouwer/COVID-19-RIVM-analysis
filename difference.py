@@ -7,7 +7,7 @@ def main():
     firstDate = input("Give the first date as (YYYYMMDD): ")
     secondDate = input("Give the decond date as (YYYYMMDD): ")
 
-    first, second = getDifference(date1, date2)
+    first, second = getDifference(firstDate, secondDate)
 
     plt.plot(first, label="Gevallen")
     plt.plot(first - second, label="Nieuwe gevallen")

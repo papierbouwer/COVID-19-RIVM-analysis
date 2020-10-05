@@ -36,6 +36,29 @@ def main():
 
     plt.show()
 
+    T = 7
+    TE = 0.5**0.5
+
+    R = getR(popt[1], momentBinomial, T, TE)
+    RErr = R * getRErrorBinom(popt[1], perr[1], T, TE)
+
+    print(R, RErr)
+
+def momentBinomial(r, avg, std):
+    p = 1 - std/avg
+    n = avg / p
+
+    return (1-p+p*np.exp(r))**n
+
+def getR(beta, momentFunction, avg, std):
+    return 1/momentFunction(-beta, avg, std)
+
+def getRErrorBinom(beta, betaE, avg, std):
+    p = 1 - std/avg
+    n = avg / p
+
+    return 1/(1-p+p*np.exp(-beta)) * np.sqrt(avg**2 * np.exp(-2 * beta) * betaE ** 2 + n**2*(np.exp(-beta)-1)**2*std)
+
 def getDates():
     dates = [x[0][5:len(x[0])] for x in os.walk("data")]
     dates = [date for date in dates if len(date) > 0]
