@@ -7,16 +7,7 @@ def main():
     firstDate = input("Give the first date as (YYYYMMDD): ")
     secondDate = input("Give the decond date as (YYYYMMDD): ")
 
-    first  = readFile(LOCAL + firstDate + "/cases.txt")
-    second = readFile(LOCAL + secondDate + "/cases.txt")
-
-    if len(first) != len(second):
-        difference = len(first) - len(second)
-        for i in range(difference):
-            second.append(0)
-
-    first = np.array(first)
-    second = np.array(second)
+    first, second = getDifference(date1, date2)
 
     plt.plot(first, label="Gevallen")
     plt.plot(first - second, label="Nieuwe gevallen")
@@ -31,6 +22,20 @@ def main():
 
     plt.show()
     print(np.sum(first - second))
+
+def getDifference(date1, date2):
+    first  = readFile(LOCAL + date1 + "/cases.txt")
+    second = readFile(LOCAL + date2 + "/cases.txt")
+
+    # Make both arrays the same length by appending zero's.
+    if len(first) != len(second):
+        difference = len(first) - len(second)
+        for i in range(difference):
+            second.append(0)
+
+    first = np.array(first)
+    second = np.array(second)
+    return first, second
 
 def readFile(fileName):
     tempNumber = 0
