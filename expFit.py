@@ -24,8 +24,10 @@ def main():
 
     plt.ylim(0, 1.1*np.max(cases))
 
-    plt.xlabel("Dagen sinds " + datetime.datetime.today().strftime("%Y-%m-%d"))
+    #plt.xlabel("Dagen sinds " + datetime.datetime.today().strftime("%Y-%m-%d"))
     plt.ylabel("Nieuwe gevallen")
+
+    plt.xticks(days[::5], dates[:-1:5], rotation=-90)
 
     plt.legend()
     plt.tight_layout()
